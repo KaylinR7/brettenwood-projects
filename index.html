@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BRETTENWOOD PROJECTS | Water Infrastructure</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f9;
+            color: #1b1c1c;
+            -webkit-font-smoothing: antialiased;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#e2e2e2",
+                      "on-primary-fixed": "#1b1b1b",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "surface-tint": "#5e5e5e",
+                      "on-background": "#1b1c1c",
+                      "tertiary": "#000000",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#848484",
+                      "surface-container-high": "#e9e8e7",
+                      "surface-container": "#efeded",
+                      "on-tertiary-container": "#838484",
+                      "on-surface": "#1b1c1c",
+                      "surface-bright": "#fbf9f9",
+                      "surface-container-low": "#f5f3f3",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#dfe0e0",
+                      "outline": "#7e7576",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "on-surface-variant": "#4c4546",
+                      "primary-container": "#1b1b1b",
+                      "inverse-primary": "#c6c6c6",
+                      "on-secondary-fixed-variant": "#454747",
+                      "surface-container-highest": "#e4e2e2",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed": "#e2e2e2",
+                      "primary": "#000000",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "on-primary": "#ffffff",
+                      "surface": "#fbf9f9",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#e2e2e2",
+                      "on-primary-fixed-variant": "#474747",
+                      "surface-variant": "#e4e2e2",
+                      "on-secondary-container": "#616363",
+                      "secondary": "#5d5f5f",
+                      "primary-fixed-dim": "#c6c6c6",
+                      "inverse-surface": "#303031",
+                      "on-error": "#ffffff",
+                      "surface-dim": "#dbdad9",
+                      "inverse-on-surface": "#f2f0f0",
+                      "tertiary-container": "#1a1c1c",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "background": "#fbf9f9",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "outline-variant": "#cfc4c5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "stack-md": "32px",
+                      "container-max": "1280px",
+                      "stack-lg": "80px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px",
+                      "stack-sm": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Montserrat"],
+                      "headline-lg-mobile": ["Montserrat"],
+                      "label-bold": ["Inter"],
+                      "display": ["Montserrat"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Montserrat"],
+                      "body-lg": ["Inter"],
+                      "caption": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "label-bold": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface dark:bg-surface border-b-2 border-primary dark:border-primary-fixed fixed top-0 w-full z-50">
+<div class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<img alt="BRETTENWOOD PROJECTS" class="h-10 w-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOpMDdHxf5ZrRPE2HOFVZsRE-n2PAfamYBMp-KO7qJ8T4ddCaV42e4KmzURlK49J0yL0WTR--b-NU7q3jhfS7ohui-cOQm_9ZMdv84ePRp_ZdDk2BMF2GKNcoQz9VccUHgnLFgmISUd9UKANvrmOgFkiJMkUbtprIBR594qBpighdPG_vGgqA1oy7UKNy_Vk8-tU4SW1M8_iMvQvfyAEnNfT-njgrmnlGFOxtObfyY-pPRU-6ckRGydBum2J7i1QdegEj8gkUsXevR"/>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-on-primary-fixed tracking-tighter">BRETTENWOOD PROJECTS</span>
+</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-primary dark:text-on-primary-fixed border-b-2 border-primary pb-1" href="index.html">Home</a>
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="catalogue.html">Catalogue</a>
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="about.html">About Us</a>
+</nav>
+<button class="bg-primary text-on-primary px-6 py-2 font-label-bold uppercase tracking-widest hover:bg-white hover:text-black border-2 border-primary transition-all duration-200 ease-in-out">
+                Get Quote
+            </button>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex flex-col justify-center overflow-hidden border-b-2 border-primary">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDtKEbhgDEL-ADPrsWbB-37lMNjAM1Q64z61UwQRPLXkldaGZ8KzvvaTr_SwVBeKkCUZOZ5dtT5LX8YmzZRYLcX2V70T2rh4ye33jUSpQBwZC8KwlrQch1vDMNdBGnDlsFhG5S3UD4BwVM8piNHlnsG7sToDPVskaKtKoQ-8DDr40M55TbEZTsA7LMgQJLuzioYvwJ-RMnPW7HOsi2BfeKSx8j7S5fYEiP_TlkvgjNIbafdNgzvLg0bbLyGM27HLjm1cvWnLuXLNmBB')"></div>
+<div class="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
+</div>
+<div class="relative z-10 px-margin-desktop max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-8 flex flex-col items-start gap-stack-md">
+<div class="bg-primary text-on-primary px-4 py-1 font-label-bold uppercase tracking-widest mb-4">
+                        KwaZulu-Natal Premier Infrastructure
+                    </div>
+<h1 class="font-display text-[56px] md:text-display leading-none text-primary uppercase">
+                        Reliable Water<br/>Backup for<br/>KZN Homes
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-background max-w-xl">
+                        Specialized architectural-grade water security systems designed for the South African coast. Engineering excellence meeting domestic reliability.
+                    </p>
+<div class="flex flex-wrap gap-stack-sm mt-stack-sm">
+<button class="bg-primary text-on-primary px-10 py-4 font-label-bold uppercase tracking-widest border-2 border-primary hover:bg-transparent hover:text-primary transition-all duration-300">
+                            View Catalogue
+                        </button>
+<button class="bg-transparent text-primary px-10 py-4 font-label-bold uppercase tracking-widest border-2 border-primary hover:bg-primary hover:text-on-primary transition-all duration-300">
+                            Our Process
+                        </button>
+</div>
+</div>
+</div>
+<!-- Bottom Anchor Bar -->
+<div class="absolute bottom-0 left-0 w-full bg-primary py-4 px-margin-desktop">
+<div class="max-w-container-max mx-auto flex justify-between items-center text-on-primary font-label-bold uppercase text-[12px] tracking-[0.2em]">
+<span>Ballito / Salt Rock / Zimbali</span>
+<span class="hidden md:block">Certified Engineering Partner</span>
+<span>24/7 Support Readiness</span>
+</div>
+</div>
+</section>
+<!-- Why Choose Us - Bento Style -->
+<section class="py-stack-lg px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-stack-lg border-b-4 border-primary pb-4">
+<h2 class="font-headline-lg text-headline-lg uppercase">Why Choose Us</h2>
+<p class="font-label-bold text-label-bold text-secondary uppercase tracking-widest pb-2">The Brettenwood Standard</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="border-2 border-primary p-10 flex flex-col gap-stack-sm hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="construction">construction</span>
+<h3 class="font-headline-md text-headline-md uppercase mt-4">Expert Installation</h3>
+<p class="font-body-md text-body-md text-secondary">
+                        Our technicians are master plumbers and structural engineers. We don't just "install tanks"; we integrate infrastructure into your property's blueprint.
+                    </p>
+</div>
+<!-- Card 2 -->
+<div class="bg-primary text-on-primary p-10 flex flex-col gap-stack-sm transform md:-translate-y-8">
+<span class="material-symbols-outlined text-4xl text-on-primary" data-icon="location_on">location_on</span>
+<h3 class="font-headline-md text-headline-md uppercase mt-4">Local KZN Expertise</h3>
+<p class="font-body-md text-body-md opacity-80">
+                        From the salt-heavy air of the North Coast to the undulating terrain of Zimbali, we understand the specific environmental challenges of KwaZulu-Natal.
+                    </p>
+</div>
+<!-- Card 3 -->
+<div class="border-2 border-primary p-10 flex flex-col gap-stack-sm hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="verified">verified</span>
+<h3 class="font-headline-md text-headline-md uppercase mt-4">Premium Quality</h3>
+<p class="font-body-md text-body-md text-secondary">
+                        We exclusively partner with top-tier pump manufacturers and high-density UV-protected tank suppliers to ensure a lifetime of service.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Services Brief Overview -->
+<section class="bg-surface-container py-stack-lg">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center">
+<div class="relative">
+<div class="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-primary"></div>
+<div class="aspect-square bg-cover bg-center border-2 border-primary shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]" data-alt="A high-contrast black and white architectural detail of a professional water filtration system and pump assembly in a clean, modern garage setting. The lighting is sharp, emphasizing the metallic textures and industrial precision of the equipment. Minimalist aesthetic with a focus on engineering quality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC_lQu58F8LP3Eb7aCJrSIWCaZ6egi41f_iYOwe1EQZHEYldhtTDsJaauYIyJJtk5Jk-Z4_3fLhYlHL9789-5BIzXdnN9f7xV5xaRVmLeHjHs5L4oeyXAM7GygxYZIdqHhcCdsdN3ZwzGMRT9E_ox6bsQy4OmJq3-ngkyWT6A_GNUZlaX7BCsbGA4y2Lx35rc-T4O-BljWgodcRrnorUJ07JoNFhMaPvGuuXiHn2zoSqU-uM0hfhWtYQs6O0OQx6dYqPHyFcPOIi80y')"></div>
+</div>
+<div class="flex flex-col gap-stack-md">
+<h2 class="font-headline-lg text-headline-lg uppercase border-l-8 border-primary pl-8">Engineered Solutions</h2>
+<div class="space-y-6">
+<div class="group cursor-pointer">
+<div class="flex justify-between items-center py-4 border-b border-outline">
+<h4 class="font-headline-md text-headline-md uppercase group-hover:pl-4 transition-all duration-300">Harvesting Systems</h4>
+<span class="material-symbols-outlined group-hover:rotate-45 transition-transform duration-300" data-icon="arrow_outward">arrow_outward</span>
+</div>
+<p class="font-body-md text-body-md text-secondary mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Full-scale rainwater capture and treatment for non-potable household use.</p>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-center py-4 border-b border-outline">
+<h4 class="font-headline-md text-headline-md uppercase group-hover:pl-4 transition-all duration-300">Municipal Backup</h4>
+<span class="material-symbols-outlined group-hover:rotate-45 transition-transform duration-300" data-icon="arrow_outward">arrow_outward</span>
+</div>
+<p class="font-body-md text-body-md text-secondary mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Seamlessly switching to stored reserves during supply outages.</p>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-center py-4 border-b border-outline">
+<h4 class="font-headline-md text-headline-md uppercase group-hover:pl-4 transition-all duration-300">Solar Integration</h4>
+<span class="material-symbols-outlined group-hover:rotate-45 transition-transform duration-300" data-icon="arrow_outward">arrow_outward</span>
+</div>
+<p class="font-body-md text-body-md text-secondary mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Powering pumps with photovoltaic arrays for 100% off-grid reliability.</p>
+</div>
+</div>
+<button class="self-start mt-4 font-label-bold text-label-bold uppercase underline tracking-widest hover:text-secondary transition-colors">
+                            Explore full service suite
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-stack-lg px-margin-desktop max-w-container-max mx-auto text-center">
+<div class="border-4 border-primary p-stack-lg flex flex-col items-center gap-stack-md">
+<h2 class="font-display text-headline-lg md:text-[64px] uppercase leading-none">Ready for zero<br/>down-time?</h2>
+<p class="font-body-lg text-body-lg max-w-2xl text-secondary">
+                    Join the growing number of KZN homeowners securing their properties with Brettenwood Projects. Our consultants are ready to assess your needs.
+                </p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-12 py-5 font-label-bold uppercase tracking-widest border-2 border-primary hover:bg-white hover:text-primary transition-all duration-300">
+                        Book Assessment
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-primary dark:bg-primary-container border-t-4 border-primary dark:border-primary-fixed">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md px-margin-desktop py-stack-lg max-w-container-max mx-auto text-on-primary">
+<div class="flex flex-col gap-6">
+<div class="font-headline-md text-headline-md text-on-primary dark:text-on-primary-container uppercase font-bold tracking-tighter">BRETTENWOOD PROJECTS</div>
+<p class="font-body-md text-body-md opacity-80 max-w-md">
+                    The North Coast's leading authority in premium water backup and storage solutions. Engineering reliability into every home.
+                </p>
+<div class="flex gap-4 mt-4">
+<a class="opacity-80 hover:opacity-100 transition-opacity" href="#">Facebook</a>
+<a class="opacity-80 hover:opacity-100 transition-opacity" href="#">Instagram</a>
+<a class="opacity-80 hover:opacity-100 transition-opacity" href="#">LinkedIn</a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-4">
+<span class="font-label-bold text-label-bold uppercase tracking-widest border-b border-on-primary/20 pb-2">Navigation</span>
+<a class="font-body-md opacity-80 hover:opacity-100 hover:text-inverse-primary transition-colors" href="catalogue.html">Catalogue</a>
+<a class="font-body-md opacity-80 hover:opacity-100 hover:text-inverse-primary transition-colors" href="#">Why Choose Us</a>
+<a class="font-body-md opacity-80 hover:opacity-100 hover:text-inverse-primary transition-colors" href="#">Our Services</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-bold text-label-bold uppercase tracking-widest border-b border-on-primary/20 pb-2">Support</span>
+<a class="font-body-md opacity-80 hover:opacity-100 hover:text-inverse-primary transition-colors" href="#">Contact Us</a>
+<a class="font-body-md opacity-80 hover:opacity-100 hover:text-inverse-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md opacity-80 hover:opacity-100 hover:text-inverse-primary transition-colors underline font-bold" href="#">Client Login</a>
+</div>
+</div>
+<div class="col-span-full mt-12 pt-8 border-t border-on-primary/10 flex justify-between items-center text-caption font-label-bold uppercase tracking-widest opacity-60">
+<span>© 2024 BRETTENWOOD PROJECTS. KZN WATER INFRASTRUCTURE.</span>
+<span class="hidden md:inline">Built for Performance.</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for industrial feel
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.98)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for minimalist feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #fbf9f9; }
+        ::-webkit-scrollbar-thumb { background: #000000; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-primary-fixed": "#1b1b1b",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-tint": "#5e5e5e",
+                        "on-background": "#1b1c1c",
+                        "tertiary": "#000000",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#848484",
+                        "surface-container-high": "#e9e8e7",
+                        "surface-container": "#efeded",
+                        "on-tertiary-container": "#838484",
+                        "on-surface": "#1b1c1c",
+                        "surface-bright": "#fbf9f9",
+                        "surface-container-low": "#f5f3f3",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#dfe0e0",
+                        "outline": "#7e7576",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-surface-variant": "#4c4546",
+                        "primary-container": "#1b1b1b",
+                        "inverse-primary": "#c6c6c6",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-container-highest": "#e4e2e2",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#e2e2e2",
+                        "primary": "#000000",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-primary": "#ffffff",
+                        "surface": "#fbf9f9",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-primary-fixed-variant": "#474747",
+                        "surface-variant": "#e4e2e2",
+                        "on-secondary-container": "#616363",
+                        "secondary": "#5d5f5f",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "inverse-surface": "#303031",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#dbdad9",
+                        "inverse-on-surface": "#f2f0f0",
+                        "tertiary-container": "#1a1c1c",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "background": "#fbf9f9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "outline-variant": "#cfc4c5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "stack-md": "32px",
+                        "container-max": "1280px",
+                        "stack-lg": "80px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "stack-sm": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "label-bold": ["Inter"],
+                        "display": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<nav class="bg-surface border-b-2 border-primary fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-in-out">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<img alt="BRETTENWOOD PROJECTS Logo" class="h-12 w-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOpMDdHxf5ZrRPE2HOFVZsRE-n2PAfamYBMp-KO7qJ8T4ddCaV42e4KmzURlK49J0yL0WTR--b-NU7q3jhfS7ohui-cOQm_9ZMdv84ePRp_ZdDk2BMF2GKNcoQz9VccUHgnLFgmISUd9UKANvrmOgFkiJMkUbtprIBR594qBpighdPG_vGgqA1oy7UKNy_Vk8-tU4SW1M8_iMvQvfyAEnNfT-njgrmnlGFOxtObfyY-pPRU-6ckRGydBum2J7i1QdegEj8gkUsXevR"/>
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tighter uppercase">BRETTENWOOD PROJECTS</span>
+</div>
+<div class="hidden md:flex items-center gap-stack-md">
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors" href="index.html">Home</a>
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-primary border-b-2 border-primary pb-1" href="catalogue.html">Catalogue</a>
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors" href="about.html">About Us</a>
+<button class="bg-primary text-on-primary px-6 py-2 font-label-bold text-label-bold uppercase tracking-widest hover:bg-surface hover:text-primary border-2 border-primary transition-all duration-200">Get Quote</button>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="pt-32 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Header Section -->
+<header class="mb-stack-lg">
+<h1 class="font-display text-headline-lg-mobile md:text-display text-primary uppercase leading-none">The Catalogue</h1>
+<div class="h-2 w-32 bg-primary mt-4"></div>
+<p class="mt-stack-sm font-body-lg text-secondary max-w-2xl">
+                Precision-engineered water storage solutions for residential and commercial infrastructure. Built for reliability, designed for modern architecture.
+            </p>
+</header>
+<!-- Disclaimer Banner -->
+<div class="bg-surface-container border-l-4 border-primary p-6 mb-stack-lg flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+<p class="font-label-bold text-label-bold uppercase text-primary">Price may differ based on installation requirements</p>
+</div>
+<!-- JOJO BRAND SECTION -->
+<section class="mb-stack-lg">
+<div class="flex items-baseline gap-4 mb-stack-md border-b-2 border-primary pb-2">
+<h2 class="font-headline-lg text-headline-md md:text-headline-lg uppercase text-primary">JOJO</h2>
+<span class="font-label-bold text-label-bold text-secondary uppercase tracking-tighter">Premium Heavy Duty</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- JoJo 1000lt -->
+<div class="group bg-surface-container-lowest border-2 border-primary p-stack-sm flex flex-col transition-all duration-300 hover:bg-primary hover:text-on-primary">
+<div class="aspect-square bg-surface-container mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A professional architectural product photograph of a sleek 1000 liter JoJo water tank standing in a minimalist concrete courtyard. The lighting is bright and high-contrast, emphasizing the cylindrical form and industrial texture. The scene is shot in a monochromatic black and white style, fitting a high-end engineering catalog aesthetic with sharp shadows and clean lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1EIj7C7DFWtkJonJxZdulJL2SvOK0Ub5OCZfoUa3KuzFU2hfpb9oHq3tj_dL61-K34OJWLh7-VL65g1UREev8G1jiPmhJeltu1UVLiXH5Hdo80HauY0dR9h67YOJ--TGgMsMjoxEFE0dwJzftkFz7WiN3QBl2UYE1yAmvIokbsQzX_s7MyDxB5xAZZekYUsgTs3cdtD7ESg1yi3oORkgfHTcapVoGWGsIYmZjZ4OtFwz7-Pa9nP62UOh5__07ZgTfXqJvnavUrDDa"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary group-hover:bg-on-primary group-hover:text-primary px-3 py-1 font-label-bold text-caption uppercase">1000lt</div>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-2">Compact Storage</h3>
+<p class="font-body-md opacity-80 mb-4">Ideal for urban residences with space constraints. High-density polyethylene construction.</p>
+<div class="mt-auto border-t border-primary group-hover:border-on-primary pt-4 flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-bold text-caption uppercase">Full Setup Included</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">engineering</span>
+<span class="font-label-bold text-caption uppercase">Solar Ready</span>
+</div>
+</div>
+</div>
+<!-- JoJo 2500lt -->
+<div class="group bg-surface-container-lowest border-2 border-primary p-stack-sm flex flex-col transition-all duration-300 hover:bg-primary hover:text-on-primary">
+<div class="aspect-square bg-surface-container mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A large 2500 liter JoJo water tank showcased in a modern industrial setting with exposed steel beams and polished concrete floors. The lighting is dramatic and directional, creating a powerful high-contrast black and white visual. The composition is clean and minimalist, focusing on the tank's structural integrity and architectural presence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1Rw3YxYp8pSDVafycF4vMJJyiTF3a-_w4Xa6wuaKPcuncQORI0w_3ISFprN_r0K3Fbo6q5UdsNu78tAId21cve76EtHG2b0e1RY9al61cH5HGmsCDUXsXnB0WMZjhr7BDC5KvMPUS-hQmjKX0NXxeMC-3HB-hVSn8YKUFhAeTfupZbfonV0fF_8Vb2WMYc4By9KTbWisiW0uFCko1xCbz6q1R9zNNG4Up7abSCnofqu85n0S909Jtbt5EC5bYyPdaFmyLP0vC_QFv"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary group-hover:bg-on-primary group-hover:text-primary px-3 py-1 font-label-bold text-caption uppercase">2500lt</div>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-2">Standard Reserve</h3>
+<p class="font-body-md opacity-80 mb-4">The industry standard for family homes. Robust, UV-protected, and algae-resistant.</p>
+<div class="mt-auto border-t border-primary group-hover:border-on-primary pt-4 flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-bold text-caption uppercase">Full Setup Included</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="font-label-bold text-caption uppercase">10 Year Warranty</span>
+</div>
+</div>
+</div>
+<!-- JoJo 5000lt -->
+<div class="group bg-surface-container-lowest border-2 border-primary p-stack-sm flex flex-col transition-all duration-300 hover:bg-primary hover:text-on-primary">
+<div class="aspect-square bg-surface-container mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A massive 5000 liter industrial JoJo water tank installed next to a sleek modern villa. The photograph is captured in a high-key black and white architectural style, emphasizing the sheer scale and clean geometry of the infrastructure. The environment is minimalist with sharp lines, soft daylight, and an atmosphere of professional reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwzIq4-293khUN1qEA6IXedtx3cRB-JZW09z77d1LhoGPA8kqENRkokRYJE0bFtYzIiGDcHun_Znu6PLJmcIQomJ7RIKyn_6jSAfqMT6HaGXjwfGAQmFG9_ruaSdbUZRmbu8OhbPtodNqx-_U1abxnhC_tdJJnkSGfY6qccxE2D0Yg0ShvDEoH3Krpr9XWyJ_b5SyWQ-itIegM3GYQf7OhZkxJ1hWx701SwMG0Qq3SRiHJeDK8T0BXc1e3Lk5FYt-s19obNHMzVmwc"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary group-hover:bg-on-primary group-hover:text-primary px-3 py-1 font-label-bold text-caption uppercase">5000lt</div>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-2">High Capacity</h3>
+<p class="font-body-md opacity-80 mb-4">Extended backup for large estates and commercial applications. Maximum security.</p>
+<div class="mt-auto border-t border-primary group-hover:border-on-primary pt-4 flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-bold text-caption uppercase">Full Setup Included</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">water_drop</span>
+<span class="font-label-bold text-caption uppercase">Multi-Tank Linkable</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ECO BRAND SECTION -->
+<section class="mb-stack-lg">
+<div class="flex items-baseline gap-4 mb-stack-md border-b-2 border-primary pb-2">
+<h2 class="font-headline-lg text-headline-md md:text-headline-lg uppercase text-primary">ECO</h2>
+<span class="font-label-bold text-label-bold text-secondary uppercase tracking-tighter">Sustainable Engineering</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Eco 1000lt -->
+<div class="group bg-surface-container-low border-2 border-primary p-stack-sm flex flex-col transition-all duration-300 hover:bg-primary hover:text-on-primary">
+<div class="aspect-square bg-surface-container mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A minimalist architectural shot of a sleek 1000 liter ECO water tank, emphasizing its sustainable profile. The image is high-contrast monochrome with soft gray shadows on a white background. The focus is on the precision-molded details and industrial design, set within a clean, modern spatial arrangement that feels airy and surgical." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0RfroPlz2y3QeP-FSHgKVNrKt7SahOXsYy1atxzGHG4K5FzJNrAwEIsI3XkqX5RapCItaxdaOUNFZtXpWePkkvMYm44Cx70Xc8sbwUjnw8Ta_W8_JyLT3rnyCyiwhu55JdCyawnQLsLT2nvotSu_RjAaRwinNj6UpfPuS3-Rb_DwYhbKBpm2QnFjXUb1DDs1Exl8NIMGAg0oJcaDZWFEPLvRIMPjMUHKAOEYhDfOb8Z9ixQ-uzrE-xO9HsiZ_uUYb1TplU7sVxlxX"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary group-hover:bg-on-primary group-hover:text-primary px-3 py-1 font-label-bold text-caption uppercase">1000lt</div>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-2">Eco Slimline</h3>
+<p class="font-body-md opacity-80 mb-4">Engineered for sustainability. Slim profile fits narrow side-passages effortlessly.</p>
+<div class="mt-auto border-t border-primary group-hover:border-on-primary pt-4 flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-bold text-caption uppercase">Full Setup Included</span>
+</div>
+</div>
+</div>
+<!-- Eco 2500lt -->
+<div class="group bg-surface-container-low border-2 border-primary p-stack-sm flex flex-col transition-all duration-300 hover:bg-primary hover:text-on-primary">
+<div class="aspect-square bg-surface-container mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A 2500 liter ECO water tank standing as a centerpiece in a modern garden design. The photography style is stark black and white, featuring high-contrast lighting and sharp focus. The minimalist surroundings highlight the tank's sleek, ribbed surface and industrial-grade construction, evoking a sense of structural beauty and reliable engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzW2aSqcvWFG6zK4GxJaeTJNFIrR7CA-LFzv0D8Ws4OS-E5NNeqsLPTduuGAMpf3se4WRAGvX1ZpWaSLufLLcKo4kABCRlvIAoDjyMlp9jyhglrTRZzkRq4sx912GQdnmEdbZs1S15lQCvJIYVnZnh__xnoJLEA1L11XdtCS17UA7JU--gOGTPja0E5y_K6mWSLhzOXM2rYSvkGWWCqJ_RP1z0VcIUZ0IqeZfQvog2TFiIdcfYptcutrNGj0SsDi-ehWvVpjCKbzeO"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary group-hover:bg-on-primary group-hover:text-primary px-3 py-1 font-label-bold text-caption uppercase">2500lt</div>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-2">Efficient Flow</h3>
+<p class="font-body-md opacity-80 mb-4">Precision-molded for maximum strength with minimal material waste. Lightweight yet durable.</p>
+<div class="mt-auto border-t border-primary group-hover:border-on-primary pt-4 flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-bold text-caption uppercase">Full Setup Included</span>
+</div>
+</div>
+</div>
+<!-- Eco 5000lt -->
+<div class="group bg-surface-container-low border-2 border-primary p-stack-sm flex flex-col transition-all duration-300 hover:bg-primary hover:text-on-primary">
+<div class="aspect-square bg-surface-container mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="An expansive 5000 liter ECO water tank integrated into a commercial building's utility area. The photo uses professional architectural lighting to create a high-contrast black and white image. The composition emphasizes clean lines, grand scale, and the stark beauty of industrial infrastructure, maintaining a theme of surgical cleanliness and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB12QvUioN3APGl_INO4mgvk8c8eL-b69HcgF3b2OGpskp6zhy_ELmhWhp9lVcTJsw7411bbT2ksmzfRrg-R-PskhCfKDT5OtKXmLqSdq4v8_DZjE36_fkr_WXuMdh5UK3ao5HfZkYKtMfNyDKbLibr4mesc-m54-CulT-7y3xd5z28rMa6tOOQ-fbu0bmqDX1EfVa1yd1LYiqZnbxPHB3MYKWPuuHJl0XHPAvBgWFM-TE5HJfmouopxTcTPy1Caz5qnuj95H4u6Eb9"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary group-hover:bg-on-primary group-hover:text-primary px-3 py-1 font-label-bold text-caption uppercase">5000lt</div>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-2">Master Reserve</h3>
+<p class="font-body-md opacity-80 mb-4">The ultimate ecological water solution for large-scale irrigation and backup systems.</p>
+<div class="mt-auto border-t border-primary group-hover:border-on-primary pt-4 flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-bold text-caption uppercase">Full Setup Included</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="mt-stack-lg bg-primary text-on-primary p-12 md:p-24 text-center">
+<h2 class="font-display text-headline-lg-mobile md:text-headline-lg uppercase mb-stack-sm">Ready for Installation?</h2>
+<p class="font-body-lg mb-stack-md max-w-xl mx-auto opacity-80">Our engineering team provides end-to-end management of your water infrastructure project.</p>
+<button class="bg-on-primary text-primary px-10 py-4 font-label-bold text-label-bold uppercase tracking-widest hover:bg-transparent hover:text-on-primary border-2 border-on-primary transition-all duration-300">Request Custom Quote</button>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary border-t-4 border-primary-fixed">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto text-on-primary">
+<div>
+<span class="font-headline-md text-headline-md uppercase block mb-stack-sm">BRETTENWOOD PROJECTS</span>
+<p class="font-body-md opacity-70 max-w-xs">Industrial reliability and architectural precision in water backup systems for KwaZulu-Natal.</p>
+</div>
+<div class="flex flex-col md:items-end gap-stack-sm">
+<div class="flex flex-wrap gap-gutter justify-start md:justify-end">
+<a class="font-body-md opacity-80 hover:opacity-100 transition-opacity hover:text-inverse-primary" href="#">Facebook</a>
+<a class="font-body-md opacity-80 hover:opacity-100 transition-opacity hover:text-inverse-primary" href="#">Instagram</a>
+<a class="font-body-md opacity-80 hover:opacity-100 transition-opacity hover:text-inverse-primary" href="#">LinkedIn</a>
+<a class="font-body-md opacity-80 hover:opacity-100 transition-opacity hover:text-inverse-primary" href="#">Contact Us</a>
+<a class="font-body-md opacity-80 hover:opacity-100 transition-opacity hover:text-inverse-primary" href="#">Privacy Policy</a>
+</div>
+<p class="font-body-md opacity-50 text-caption mt-auto">© 2024 BRETTENWOOD PROJECTS. KZN WATER INFRASTRUCTURE.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Smooth scroll interaction for links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple scroll observer for TopNavBar shadow/compaction
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-xl');
+                nav.classList.remove('h-20');
+                nav.classList.add('h-16');
+            } else {
+                nav.classList.remove('shadow-xl');
+                nav.classList.add('h-20');
+                nav.classList.remove('h-16');
+            }
+        });
+    </script>
+</body></html>
