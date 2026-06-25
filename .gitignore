@@ -12,6 +12,27 @@ desktop.ini
 # Logs
 *.log
 
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+.env
+venv/
+env/
+.venv/
+
+# Flask
+instance/
+.flask_env
+
 # Node (if added later)
 node_modules/
-dist/
+
+# Data (keep structure, ignore sensitive submissions)
+# Uncomment below to ignore user-submitted reviews:
+# data/reviews.json

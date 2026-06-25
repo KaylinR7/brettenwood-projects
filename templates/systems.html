@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block title %}Tank Systems | BrettenWood Projects{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="bw-page-header">
+  <div class="container-xl">
+    <div class="row align-items-center">
+      <div class="col" data-aos="fade-right">
+        <span class="bw-section-eyebrow bw-section-eyebrow--light">What We Install</span>
+        <h1 class="bw-page-title">Tank Systems</h1>
+        <p class="bw-page-subtitle">
+          Complete water backup packages—tank, Grundfos pump, fittings, and installation included.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filter Bar -->
+<section class="bw-filter-bar sticky-top">
+  <div class="container-xl">
+    <form method="GET" action="{{ url_for('systems') }}" class="d-flex flex-wrap gap-3 align-items-center py-3">
+      <span class="fw-semibold text-uppercase tracking-wide small me-2">Filter:</span>
+
+      <!-- Brand filter -->
+      <div class="bw-filter-group">
+        <span class="bw-filter-label">Brand</span>
+        <div class="btn-group" role="group">
+          <a href="?brand=all&size={{ size_filter }}"
+             class="btn bw-filter-btn {% if brand_filter == 'all' %}active{% endif %}">All</a>
+          <a href="?brand=jojo&size={{ size_filter }}"
+             class="btn bw-filter-btn {% if brand_filter == 'jojo' %}active{% endif %}">JoJo</a>
+          <a href="?brand=eco&size={{ size_filter }}"
+             class="btn bw-filter-btn {% if brand_filter == 'eco' %}active{% endif %}">Eco</a>
+        </div>
+      </div>
+
+      <div class="bw-filter-divider d-none d-md-block"></div>
+
+      <!-- Size filter -->
+      <div class="bw-filter-group">
+        <span class="bw-filter-label">Capacity</span>
+        <div class="btn-group" role="group">
+          <a href="?brand={{ brand_filter }}&size=all"
+             class="btn bw-filter-btn {% if size_filter == 'all' %}active{% endif %}">All</a>
+          <a href="?brand={{ brand_filter }}&size=1000L"
+             class="btn bw-filter-btn {% if size_filter == '1000L' %}active{% endif %}">1000 L</a>
+          <a href="?brand={{ brand_filter }}&size=2500L"
+             class="btn bw-filter-btn {% if size_filter == '2500L' %}active{% endif %}">2500 L</a>
+          <a href="?brand={{ brand_filter }}&size=5000L"
+             class="btn bw-filter-btn {% if size_filter == '5000L' %}active{% endif %}">5000 L</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Systems Grid -->
+<section class="bw-section">
+  <div class="container-xl">
+    {% if systems %}
+    <div class="row g-4">
+      {% for system in systems %}
+      <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 80 }}">
+        <div class="bw-system-card">
+          <!-- Brand badge -->
+          <div class="bw-system-brand-badge bw-system-brand-badge--{{ system.brand | lower }}">
+            {{ system.brand }}
+          </div>
+
+          <!-- Tank image -->
+          <div class="bw-system-img-wrap">
+            <img src="{{ url_for('static', filename=system.image) }}"
+                 onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80'"
+                 alt="{{ system.brand }} {{ system.capacity }} Water Tank"
+                 class="bw-system-img">
+          </div>
+
+          <!-- Card body -->
+          <div class="bw-system-body">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h2 class="bw-system-title mb-0">{{ system.capacity }} System</h2>
+              <span class="bw-capacity-badge">{{ system.capacity }}</span>
+            </div>
+            <p class="bw-system-pump mb-3">
+              <i class="fa-solid fa-gear me-1"></i>{{ system.pump }}
+            </p>
+            <p class="bw-system-pump-specs mb-3">
+              <i class="fa-solid fa-bolt me-1"></i>{{ system.pump_specs }}
+            </p>
+            <p class="bw-system-ideal mb-3">
+              <i class="fa-solid fa-house me-1"></i>Ideal for: <em>{{ system.ideal_for }}</em>
+            </p>
+
+            <!-- Included components -->
+            <div class="bw-components-toggle" id="toggle-{{ system.id }}">
+              <button class="bw-components-btn" type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#components-{{ system.id }}"
+                      aria-expanded="false">
+                <i class="fa-solid fa-list-check me-2"></i>
+                What's Included
+                <i class="fa-solid fa-chevron-down ms-auto"></i>
+              </button>
+              <div class="collapse" id="components-{{ system.id }}">
+                <ul class="bw-components-list">
+                  {% for item in system.components %}
+                  <li><i class="fa-solid fa-check bw-check-icon me-2"></i>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card footer -->
+          <div class="bw-system-footer">
+            <a href="{{ url_for('contact') }}?system={{ system.id }}" class="btn bw-btn-primary w-100">
+              <i class="fa-solid fa-phone-volume me-2"></i>Contact for Quote
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="bw-empty-state" data-aos="fade-up">
+      <i class="fa-solid fa-filter-circle-xmark fa-3x mb-3"></i>
+      <h3>No systems match your filters.</h3>
+      <a href="{{ url_for('systems') }}" class="btn bw-btn-outline mt-3">Clear Filters</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Info section -->
+<section class="bw-section bw-section--gray">
+  <div class="container-xl">
+    <div class="bw-section-header" data-aos="fade-up">
+      <span class="bw-section-eyebrow">Every System Includes</span>
+      <h2 class="bw-section-title">Complete Installation Package</h2>
+    </div>
+    <div class="row g-4 mt-2">
+      {% for item in [
+        {'icon': 'fa-droplet', 'title': 'UV-Resistant Tank', 'desc': 'Food-grade polyethylene tanks rated for 10+ years outdoors.'},
+        {'icon': 'fa-gear', 'title': 'Grundfos Pump', 'desc': 'Industry-leading pressure pumps with built-in thermal protection.'},
+        {'icon': 'fa-sliders', 'title': 'Pressure Switch', 'desc': 'Auto cut-in/cut-out switch factory-set for optimal household pressure.'},
+        {'icon': 'fa-arrow-right-to-bracket', 'title': 'Non-Return Valve', 'desc': 'Prevents backflow and protects your pump from pressure surges.'},
+        {'icon': 'fa-table-cells', 'title': 'Tank Stand', 'desc': 'Galvanised or powder-coated steel stand sized for your tank.'},
+        {'icon': 'fa-screwdriver-wrench', 'title': 'Installation Kit', 'desc': 'All pipework, fittings, float valve, and labour included.'},
+      ] %}
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 60 }}">
+        <div class="d-flex gap-3 align-items-start">
+          <div class="bw-package-icon">
+            <i class="fa-solid {{ item.icon }}"></i>
+          </div>
+          <div>
+            <h4 class="bw-package-title">{{ item.title }}</h4>
+            <p class="bw-package-desc">{{ item.desc }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

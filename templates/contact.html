@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+{% block title %}Contact Us | BrettenWood Projects{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="bw-page-header">
+  <div class="container-xl">
+    <div class="row">
+      <div class="col" data-aos="fade-right">
+        <span class="bw-section-eyebrow bw-section-eyebrow--light">Get in Touch</span>
+        <h1 class="bw-page-title">Contact Us</h1>
+        <p class="bw-page-subtitle">
+          Request a free assessment, quote, or just ask a question. We respond within 24 hours.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="bw-section">
+  <div class="container-xl">
+    <div class="row g-5">
+
+      <!-- Contact Form -->
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="bw-form-card">
+          <h2 class="fw-bold mb-4">Send Us a Message</h2>
+          <form method="POST" action="{{ url_for('submit_contact') }}" id="contactForm" novalidate>
+
+            <div class="row g-3">
+              <!-- Name -->
+              <div class="col-sm-6">
+                <label for="contact-name" class="bw-form-label">Full Name <span class="text-danger">*</span></label>
+                <input type="text" id="contact-name" name="name" class="form-control bw-form-input"
+                       placeholder="Your full name" required>
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-sm-6">
+                <label for="contact-email" class="bw-form-label">Email <span class="text-danger">*</span></label>
+                <input type="email" id="contact-email" name="email" class="form-control bw-form-input"
+                       placeholder="your@email.com" required>
+                <div class="invalid-feedback">Please enter a valid email.</div>
+              </div>
+
+              <!-- Phone -->
+              <div class="col-sm-6">
+                <label for="contact-phone" class="bw-form-label">Phone <span class="text-muted">(optional)</span></label>
+                <input type="tel" id="contact-phone" name="phone" class="form-control bw-form-input"
+                       placeholder="+27 82 000 0000">
+              </div>
+
+              <!-- Service Area -->
+              <div class="col-sm-6">
+                <label for="contact-area" class="bw-form-label">Service Area</label>
+                <select id="contact-area" name="area" class="form-select bw-form-select">
+                  <option value="">Select your area…</option>
+                  <option value="durban_metro">Durban Metro</option>
+                  <option value="south_coast">South Coast</option>
+                  <option value="north_coast">North Coast</option>
+                  <option value="inland_kzn">Inland KZN</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <!-- Urgency -->
+              <div class="col-12">
+                <label for="contact-urgency" class="bw-form-label">Urgency Level</label>
+                <select id="contact-urgency" name="urgency" class="form-select bw-form-select">
+                  <option value="standard">Standard – within a few weeks</option>
+                  <option value="soon">Soon – within a week</option>
+                  <option value="urgent">Urgent – ASAP</option>
+                  <option value="emergency">Emergency – no water!</option>
+                </select>
+              </div>
+
+              <!-- Message -->
+              <div class="col-12">
+                <label for="contact-message" class="bw-form-label">Message <span class="text-danger">*</span></label>
+                <textarea id="contact-message" name="message" class="form-control bw-form-textarea"
+                          rows="5"
+                          placeholder="Tell us about your property and water backup needs…" required></textarea>
+                <div class="invalid-feedback">Please enter your message.</div>
+              </div>
+
+              <!-- Submit -->
+              <div class="col-12">
+                <button type="submit" class="btn bw-btn-primary btn-lg w-100">
+                  <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Contact Info Sidebar -->
+      <div class="col-lg-5" data-aos="fade-left">
+        <div class="d-flex flex-column gap-4">
+
+          <!-- Contact details -->
+          <div class="bw-contact-info-card">
+            <h3 class="bw-contact-info-title">Direct Contact</h3>
+            <ul class="list-unstyled bw-contact-details">
+              <li>
+                <i class="fa-solid fa-phone bw-contact-icon"></i>
+                <div>
+                  <small class="text-muted d-block">Call / WhatsApp</small>
+                  <a href="tel:+27000000000" class="fw-semibold">+27 (0) 00 000 0000</a>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-envelope bw-contact-icon"></i>
+                <div>
+                  <small class="text-muted d-block">Email</small>
+                  <a href="mailto:info@brettenwood.co.za" class="fw-semibold">info@brettenwood.co.za</a>
+                </div>
+              </li>
+              <li>
+                <i class="fa-brands fa-whatsapp bw-contact-icon"></i>
+                <div>
+                  <small class="text-muted d-block">WhatsApp</small>
+                  <a href="https://wa.me/27000000000" class="fw-semibold" target="_blank">
+                    Chat on WhatsApp
+                  </a>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-clock bw-contact-icon"></i>
+                <div>
+                  <small class="text-muted d-block">Office Hours</small>
+                  <span class="fw-semibold">Mon–Fri 8 am – 5 pm<br>Sat 8 am – 1 pm</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Service areas -->
+          <div class="bw-contact-info-card">
+            <h3 class="bw-contact-info-title">Service Areas</h3>
+            <div class="row g-2">
+              {% for area, locations in [
+                ('Durban Metro', 'Pinetown, Westville, Umhlanga'),
+                ('South Coast', 'Amanzimtoti, Scottburgh, Margate'),
+                ('North Coast', 'Ballito, Salt Rock, Zimbali'),
+                ('Inland KZN', 'Hillcrest, Kloof, Midlands'),
+              ] %}
+              <div class="col-12">
+                <div class="bw-service-area-row">
+                  <i class="fa-solid fa-location-dot text-dark me-2"></i>
+                  <div>
+                    <strong>{{ area }}</strong>
+                    <small class="text-muted d-block">{{ locations }}</small>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Response time -->
+          <div class="bw-contact-highlight">
+            <i class="fa-solid fa-bolt me-2"></i>
+            <strong>Fast Response Guarantee:</strong> We respond to all enquiries within 24 hours.
+            Emergency calls answered 24/7.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Map placeholder -->
+<section class="bw-section bw-section--gray py-4">
+  <div class="container-xl">
+    <div class="bw-map-placeholder" data-aos="fade-up">
+      <div class="bw-map-overlay">
+        <i class="fa-solid fa-map-location-dot fa-3x mb-3"></i>
+        <h4>KwaZulu-Natal Service Region</h4>
+        <p class="mb-0">Covering Durban Metro, South Coast, North Coast & Inland KZN</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Pre-fill system from URL param
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const system = params.get('system');
+  if (system) {
+    const msgEl = document.getElementById('contact-message');
+    if (msgEl) {
+      msgEl.value = `I am interested in the ${system.replace(/_/g, ' ').toUpperCase()} system and would like a quote for my property.`;
+    }
+  }
+})();
+</script>
+{% endblock %}

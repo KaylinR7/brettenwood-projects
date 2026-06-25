@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block title %}Customer Reviews | BrettenWood Projects{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="bw-page-header">
+  <div class="container-xl">
+    <div class="row">
+      <div class="col" data-aos="fade-right">
+        <span class="bw-section-eyebrow bw-section-eyebrow--light">What Our Clients Say</span>
+        <h1 class="bw-page-title">Customer Reviews</h1>
+        <p class="bw-page-subtitle">
+          Real feedback from homeowners and businesses we've served across KZN.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Summary Stats -->
+<section class="bw-section bw-section--gray py-4">
+  <div class="container-xl">
+    <div class="row g-4 align-items-center">
+      <div class="col-md-4 text-center" data-aos="zoom-in">
+        <div class="bw-rating-big">4.9</div>
+        <div class="bw-stars-display mb-1">
+          {% for i in range(5) %}<i class="fa-solid fa-star"></i>{% endfor %}
+        </div>
+        <p class="text-muted small">Average Rating</p>
+      </div>
+      <div class="col-md-8">
+        {% for star in [5, 4, 3, 2, 1] %}
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <span class="bw-star-label">{{ star }}★</span>
+          <div class="progress flex-grow-1 bw-rating-bar">
+            <div class="progress-bar bw-rating-fill"
+                 style="width: {% if reviews %}{{ [(reviews | selectattr('rating', 'equalto', star) | list | length) / reviews|length * 100, 0] | max | round | int }}{% else %}{{ [100, 80, 0, 0, 0][5 - star] }}{% endif %}%"></div>
+          </div>
+          <span class="bw-star-count text-muted small">
+            {{ reviews | selectattr('rating', 'equalto', star) | list | length }}
+          </span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews Grid -->
+<section class="bw-section">
+  <div class="container-xl">
+    <h2 class="bw-section-title mb-5" data-aos="fade-up">
+      {{ reviews | length }} Review{% if reviews | length != 1 %}s{% endif %}
+    </h2>
+
+    {% if reviews %}
+    <div class="row g-4">
+      {% for review in reviews %}
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ (loop.index0 % 6) * 80 }}">
+        <div class="bw-review-card">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="bw-reviewer-avatar">
+              {{ review.name[0].upper() }}
+            </div>
+            <div class="bw-review-stars">
+              {% for i in range(review.rating) %}
+              <i class="fa-solid fa-star"></i>
+              {% endfor %}
+              {% for i in range(5 - review.rating) %}
+              <i class="fa-regular fa-star"></i>
+              {% endfor %}
+            </div>
+          </div>
+          <h4 class="bw-reviewer-name">{{ review.name }}</h4>
+          {% if review.title %}
+          <h5 class="bw-review-title">"{{ review.title }}"</h5>
+          {% endif %}
+          <p class="bw-review-text">{{ review.review }}</p>
+          <div class="bw-review-date text-muted small mt-3">
+            <i class="fa-regular fa-clock me-1"></i>
+            {{ review.timestamp[:10] if review.timestamp else 'Recently' }}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="bw-empty-state" data-aos="fade-up">
+      <i class="fa-solid fa-star fa-3x mb-3"></i>
+      <h3>No reviews yet.</h3>
+      <p>Be the first to share your experience!</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Review Submission Form -->
+<section class="bw-section bw-section--dark" id="leave-review">
+  <div class="container-xl">
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <span class="bw-section-eyebrow bw-section-eyebrow--light">Share Your Experience</span>
+          <h2 class="bw-section-title bw-section-title--light">Leave a Review</h2>
+          <p class="bw-section-lead--light">
+            Your feedback helps us improve and helps other homeowners make informed decisions.
+          </p>
+        </div>
+
+        <div class="bw-form-card" data-aos="fade-up" data-aos-delay="100">
+          <form method="POST" action="{{ url_for('submit_review') }}" id="reviewForm" novalidate>
+
+            <!-- Name -->
+            <div class="mb-4">
+              <label for="review-name" class="bw-form-label">Full Name <span class="text-danger">*</span></label>
+              <input type="text" id="review-name" name="name" class="form-control bw-form-input"
+                     placeholder="e.g. John Smith" required>
+              <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+              <label for="review-email" class="bw-form-label">Email Address <span class="text-muted">(optional)</span></label>
+              <input type="email" id="review-email" name="email" class="form-control bw-form-input"
+                     placeholder="your@email.com">
+            </div>
+
+            <!-- Star rating -->
+            <div class="mb-4">
+              <label class="bw-form-label">Rating <span class="text-danger">*</span></label>
+              <div class="bw-star-rating" id="starRating">
+                {% for i in range(1, 6) %}
+                <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" required>
+                <label for="star{{ i }}" title="{{ i }} star{% if i != 1 %}s{% endif %}">
+                  <i class="fa-solid fa-star"></i>
+                </label>
+                {% endfor %}
+              </div>
+              <div class="bw-star-hint text-muted small mt-1" id="starHint">Click to rate</div>
+              <div class="invalid-feedback d-block" id="ratingError" style="display:none!important"></div>
+            </div>
+
+            <!-- Title -->
+            <div class="mb-4">
+              <label for="review-title" class="bw-form-label">Review Title <span class="text-muted">(optional)</span></label>
+              <input type="text" id="review-title" name="title" class="form-control bw-form-input"
+                     placeholder="e.g. Excellent service!">
+            </div>
+
+            <!-- Review text -->
+            <div class="mb-4">
+              <label for="review-text" class="bw-form-label">Your Review <span class="text-danger">*</span></label>
+              <textarea id="review-text" name="review" class="form-control bw-form-textarea"
+                        rows="5" placeholder="Tell us about your experience with BrettenWood Projects..." required></textarea>
+              <div class="invalid-feedback">Please write your review.</div>
+            </div>
+
+            <button type="submit" class="btn bw-btn-primary w-100 btn-lg" id="reviewSubmitBtn">
+              <i class="fa-solid fa-paper-plane me-2"></i>Submit Review
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

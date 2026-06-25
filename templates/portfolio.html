@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% block title %}Portfolio | BrettenWood Projects{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="bw-page-header">
+  <div class="container-xl">
+    <div class="row">
+      <div class="col" data-aos="fade-right">
+        <span class="bw-section-eyebrow bw-section-eyebrow--light">Our Work</span>
+        <h1 class="bw-page-title">Project Portfolio</h1>
+        <p class="bw-page-subtitle">
+          Completed water backup installations across KwaZulu-Natal—residential and commercial.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filter Bar -->
+<section class="bw-filter-bar sticky-top">
+  <div class="container-xl">
+    <div class="d-flex flex-wrap gap-3 align-items-center py-3">
+      <span class="fw-semibold text-uppercase tracking-wide small me-2">Category:</span>
+      <div class="btn-group" role="group">
+        <a href="?category=all"
+           class="btn bw-filter-btn {% if category_filter == 'all' %}active{% endif %}">All</a>
+        <a href="?category=residential"
+           class="btn bw-filter-btn {% if category_filter == 'residential' %}active{% endif %}">
+          <i class="fa-solid fa-house me-1"></i>Residential
+        </a>
+        <a href="?category=commercial"
+           class="btn bw-filter-btn {% if category_filter == 'commercial' %}active{% endif %}">
+          <i class="fa-solid fa-building me-1"></i>Commercial
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Gallery -->
+<section class="bw-section">
+  <div class="container-xl">
+    {% if images %}
+    <div class="row g-3" id="portfolio-grid">
+      {% for img in images %}
+      {% if category_filter == 'all' or img.category == category_filter %}
+      <div class="col-sm-6 col-md-4 col-lg-3 portfolio-item"
+           data-category="{{ img.category }}"
+           data-aos="zoom-in" data-aos-delay="{{ (loop.index0 % 8) * 60 }}">
+        <div class="bw-portfolio-card"
+             data-bs-toggle="modal"
+             data-bs-target="#lightboxModal"
+             data-img="{{ url_for('static', filename=img.url) }}"
+             data-title="{{ img.title }}"
+             data-desc="{{ img.description }}"
+             data-cat="{{ img.category }}">
+          <div class="bw-portfolio-img-wrap">
+            <img src="{{ url_for('static', filename=img.url) }}"
+                 alt="{{ img.title }}"
+                 class="bw-portfolio-img"
+                 loading="lazy">
+            <div class="bw-portfolio-overlay">
+              <i class="fa-solid fa-magnifying-glass-plus bw-portfolio-zoom"></i>
+              <span class="bw-portfolio-cat-badge">{{ img.category }}</span>
+            </div>
+          </div>
+          <div class="bw-portfolio-caption">
+            <h3 class="bw-portfolio-title">{{ img.title }}</h3>
+            {% if img.description %}
+            <p class="bw-portfolio-desc">{{ img.description }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% else %}
+    <!-- No images yet: show placeholder grid -->
+    <div class="text-center mb-4" data-aos="fade-up">
+      <div class="bw-portfolio-placeholder-msg">
+        <i class="fa-solid fa-images fa-4x mb-4"></i>
+        <h3>Portfolio images coming soon</h3>
+        <p class="mb-4">
+          Add your project photos to
+          <code>static/images/portfolio/</code> and they will appear here automatically.
+        </p>
+        <a href="{{ url_for('contact') }}" class="btn bw-btn-primary">
+          <i class="fa-solid fa-phone me-2"></i>Enquire About a Project
+        </a>
+      </div>
+    </div>
+    <!-- Demo placeholder cards -->
+    <div class="row g-3">
+      {% for i in range(1, 9) %}
+      <div class="col-sm-6 col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="{{ loop.index0 * 60 }}">
+        <div class="bw-portfolio-card bw-portfolio-card--placeholder">
+          <div class="bw-portfolio-img-wrap">
+            <div class="bw-portfolio-placeholder-img">
+              <i class="fa-solid fa-droplet fa-3x"></i>
+            </div>
+          </div>
+          <div class="bw-portfolio-caption">
+            <h3 class="bw-portfolio-title">Installation #{{ i }}</h3>
+            <p class="bw-portfolio-desc">KZN Residential Project</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="modal fade bw-lightbox-modal" id="lightboxModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content bw-lightbox-content">
+      <button type="button" class="bw-lightbox-close" data-bs-dismiss="modal" aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="row g-0">
+        <div class="col-lg-8">
+          <img id="lightboxImg" src="" alt="" class="bw-lightbox-img">
+        </div>
+        <div class="col-lg-4 d-flex flex-column justify-content-center p-4">
+          <span id="lightboxCat" class="bw-portfolio-cat-badge mb-3 d-inline-block"></span>
+          <h3 id="lightboxTitle" class="fw-bold mb-3"></h3>
+          <p id="lightboxDesc" class="text-muted mb-4"></p>
+          <a href="{{ url_for('contact') }}" class="btn bw-btn-primary">
+            <i class="fa-solid fa-phone-volume me-2"></i>Get a Similar Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="bw-cta-section">
+  <div class="container-xl text-center">
+    <h2 class="bw-cta-title" data-aos="fade-up">Want a similar installation?</h2>
+    <p class="bw-cta-text" data-aos="fade-up" data-aos-delay="100">
+      Get in touch and we'll assess your property and recommend the right system.
+    </p>
+    <a href="{{ url_for('contact') }}" class="btn bw-btn-primary btn-lg mt-3"
+       data-aos="fade-up" data-aos-delay="200">
+      <i class="fa-solid fa-calendar-check me-2"></i>Book a Free Assessment
+    </a>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Lightbox population
+document.querySelectorAll('.bw-portfolio-card[data-bs-toggle="modal"]').forEach(card => {
+  card.addEventListener('click', () => {
+    document.getElementById('lightboxImg').src = card.dataset.img;
+    document.getElementById('lightboxImg').alt = card.dataset.title;
+    document.getElementById('lightboxTitle').textContent = card.dataset.title;
+    document.getElementById('lightboxDesc').textContent = card.dataset.desc;
+    document.getElementById('lightboxCat').textContent = card.dataset.cat;
+  });
+});
+</script>
+{% endblock %}

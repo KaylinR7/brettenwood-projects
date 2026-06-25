@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+{% block title %}BrettenWood Projects | Water Backup Systems KZN{% endblock %}
+
+{% block content %}
+
+<!-- ===== HERO ===== -->
+<section class="bw-hero">
+  <div class="bw-hero-overlay"></div>
+  <div class="container-xl bw-hero-content">
+    <div class="row align-items-center min-vh-100 py-5">
+      <div class="col-lg-8" data-aos="fade-right" data-aos-duration="900">
+        <div class="bw-hero-badge mb-4">
+          <i class="fa-solid fa-shield-halved me-2"></i>KwaZulu-Natal Premier Water Infrastructure
+        </div>
+        <h1 class="bw-hero-title">
+          Reliable Water<br>
+          <span class="bw-hero-accent">Backup</span><br>
+          for KZN Homes
+        </h1>
+        <p class="bw-hero-subtitle mt-4">
+          Specialised water security systems engineered for South Africa's coastal
+          climate. Grundfos pumps, premium tanks, and expert installation&mdash;all in one.
+        </p>
+        <div class="d-flex flex-wrap gap-3 mt-5">
+          <a href="{{ url_for('systems') }}" class="btn bw-btn-primary btn-lg px-5">
+            <i class="fa-solid fa-water me-2"></i>View Systems
+          </a>
+          <a href="{{ url_for('contact') }}" class="btn bw-btn-outline btn-lg px-5">
+            <i class="fa-solid fa-phone me-2"></i>Get a Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Anchor strip -->
+  <div class="bw-hero-strip">
+    <div class="container-xl">
+      <div class="row text-center text-md-start">
+        <div class="col-4 bw-strip-item">
+          <i class="fa-solid fa-location-dot me-2"></i>Ballito &middot; Salt Rock &middot; Zimbali
+        </div>
+        <div class="col-4 bw-strip-item d-none d-md-block">
+          <i class="fa-solid fa-certificate me-2"></i>Certified Engineering Partner
+        </div>
+        <div class="col-4 bw-strip-item">
+          <i class="fa-solid fa-headset me-2"></i>24/7 Support
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS BANNER ===== -->
+<section class="bw-stats-banner">
+  <div class="container-xl">
+    <div class="row g-0 text-center">
+      <div class="col-6 col-md-3 bw-stat-item" data-aos="zoom-in" data-aos-delay="0">
+        <i class="fa-solid fa-house bw-stat-icon"></i>
+        <div class="bw-stat-value">500+</div>
+        <div class="bw-stat-label">Installations</div>
+      </div>
+      <div class="col-6 col-md-3 bw-stat-item" data-aos="zoom-in" data-aos-delay="80">
+        <i class="fa-solid fa-star bw-stat-icon"></i>
+        <div class="bw-stat-value">4.9&#9733;</div>
+        <div class="bw-stat-label">Customer Rating</div>
+      </div>
+      <div class="col-6 col-md-3 bw-stat-item" data-aos="zoom-in" data-aos-delay="160">
+        <i class="fa-solid fa-calendar-check bw-stat-icon"></i>
+        <div class="bw-stat-value">10+</div>
+        <div class="bw-stat-label">Years Experience</div>
+      </div>
+      <div class="col-6 col-md-3 bw-stat-item" data-aos="zoom-in" data-aos-delay="240">
+        <i class="fa-solid fa-map-location-dot bw-stat-icon"></i>
+        <div class="bw-stat-value">4</div>
+        <div class="bw-stat-label">Service Regions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY CHOOSE US ===== -->
+<section class="bw-section">
+  <div class="container-xl">
+    <div class="bw-section-header" data-aos="fade-up">
+      <span class="bw-section-eyebrow">The Brettenwood Standard</span>
+      <h2 class="bw-section-title">Why Choose Us</h2>
+    </div>
+    <div class="row g-4 mt-2">
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="bw-feature-card">
+          <div class="bw-feature-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <h3 class="bw-feature-title">Expert Installation</h3>
+          <p class="bw-feature-text">Our technicians are qualified plumbers and structural engineers who integrate water infrastructure into your property blueprint.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="bw-feature-card bw-feature-card--dark">
+          <div class="bw-feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <h3 class="bw-feature-title">Local KZN Expertise</h3>
+          <p class="bw-feature-text">From the salt-heavy North Coast air to the Zimbali terrain, we understand KwaZulu-Natal's unique environmental challenges.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="bw-feature-card">
+          <div class="bw-feature-icon"><i class="fa-solid fa-award"></i></div>
+          <h3 class="bw-feature-title">Premium Quality</h3>
+          <p class="bw-feature-text">We partner exclusively with top-tier manufacturers including Grundfos pumps and high-density UV-protected tank suppliers.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="bw-feature-card">
+          <div class="bw-feature-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <h3 class="bw-feature-title">Fast Turnaround</h3>
+          <p class="bw-feature-text">Most residential installations completed within 1&ndash;2 days. Emergency backup installations available 24/7 across KZN.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES OVERVIEW ===== -->
+<section class="bw-section bw-section--gray">
+  <div class="container-xl">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5" data-aos="fade-right">
+        <div class="bw-img-frame">
+          <img src="{{ url_for('static', filename='images/pump_system.jpg') }}"
+               onerror="this.src='https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=600&q=80'"
+               alt="Professional Grundfos pump installation"
+               class="bw-img-featured">
+          <div class="bw-img-badge">
+            <i class="fa-solid fa-droplet"></i> Grundfos Certified
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7" data-aos="fade-left">
+        <span class="bw-section-eyebrow">What We Offer</span>
+        <h2 class="bw-section-title">Engineered Solutions</h2>
+        <p class="bw-section-lead mb-5">
+          Every system is custom-scoped for your property layout, water demand, and
+          municipal supply characteristics.
+        </p>
+
+        <div class="bw-service-row" data-aos="fade-up" data-aos-delay="0">
+          <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
+            <div>
+              <h4 class="bw-service-title mb-1">Municipal Backup Systems</h4>
+              <p class="bw-service-desc mb-0">Seamlessly switch to stored reserves during municipal outages with automated pressure-switch control.</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square bw-service-arrow ms-3"></i>
+          </div>
+        </div>
+        <div class="bw-service-row" data-aos="fade-up" data-aos-delay="80">
+          <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
+            <div>
+              <h4 class="bw-service-title mb-1">Rainwater Harvesting</h4>
+              <p class="bw-service-desc mb-0">Full-scale rainwater capture, filtration and treatment for non-potable household use.</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square bw-service-arrow ms-3"></i>
+          </div>
+        </div>
+        <div class="bw-service-row" data-aos="fade-up" data-aos-delay="160">
+          <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
+            <div>
+              <h4 class="bw-service-title mb-1">Solar Pump Integration</h4>
+              <p class="bw-service-desc mb-0">Photovoltaic-powered pump arrays for 100% off-grid water reliability.</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square bw-service-arrow ms-3"></i>
+          </div>
+        </div>
+        <div class="bw-service-row" data-aos="fade-up" data-aos-delay="240">
+          <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
+            <div>
+              <h4 class="bw-service-title mb-1">Tank &amp; Pump Maintenance</h4>
+              <p class="bw-service-desc mb-0">Annual service contracts covering pump inspection, valve replacement, and tank cleaning.</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square bw-service-arrow ms-3"></i>
+          </div>
+        </div>
+
+        <a href="{{ url_for('systems') }}" class="btn bw-btn-primary mt-4">
+          View All Tank Systems <i class="fa-solid fa-arrow-right ms-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICE AREAS ===== -->
+<section class="bw-section">
+  <div class="container-xl">
+    <div class="bw-section-header" data-aos="fade-up">
+      <span class="bw-section-eyebrow">Coverage</span>
+      <h2 class="bw-section-title">Our Service Areas</h2>
+    </div>
+    <div class="row g-3 mt-3">
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="bw-area-card">
+          <i class="fa-solid fa-city bw-area-icon"></i>
+          <h3 class="bw-area-name">Durban Metro</h3>
+          <p class="bw-area-desc">Greater Durban, Pinetown, Westville</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="bw-area-card">
+          <i class="fa-solid fa-umbrella-beach bw-area-icon"></i>
+          <h3 class="bw-area-name">South Coast</h3>
+          <p class="bw-area-desc">Amanzimtoti, Scottburgh, Margate</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="bw-area-card">
+          <i class="fa-solid fa-water bw-area-icon"></i>
+          <h3 class="bw-area-name">North Coast</h3>
+          <p class="bw-area-desc">Ballito, Salt Rock, Zimbali, Shakas Rock</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="bw-area-card">
+          <i class="fa-solid fa-mountain bw-area-icon"></i>
+          <h3 class="bw-area-name">Inland KZN</h3>
+          <p class="bw-area-desc">Hillcrest, Kloof, Waterfall, Midlands</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT SNIPPET ===== -->
+<section class="bw-section bw-section--dark">
+  <div class="container-xl">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6" data-aos="fade-right">
+        <span class="bw-section-eyebrow bw-section-eyebrow--light">About Us</span>
+        <h2 class="bw-section-title bw-section-title--light">
+          A Decade of Water<br>Infrastructure Excellence
+        </h2>
+        <p class="bw-section-lead bw-section-lead--light mb-4">
+          Founded in KwaZulu-Natal, BrettenWood Projects has grown from a local
+          plumbing outfit into the region's premier water backup specialists.
+          We combine engineering rigour with a deep understanding of KZN's unique
+          water supply challenges.
+        </p>
+        <ul class="bw-about-list">
+          <li><i class="fa-solid fa-check bw-check-icon"></i> Fully registered and insured</li>
+          <li><i class="fa-solid fa-check bw-check-icon"></i> Grundfos Authorised Installer</li>
+          <li><i class="fa-solid fa-check bw-check-icon"></i> 10-year manufacturer tank warranties</li>
+          <li><i class="fa-solid fa-check bw-check-icon"></i> 1-year labour warranty on all installations</li>
+        </ul>
+        <a href="{{ url_for('portfolio') }}" class="btn bw-btn-outline-light mt-4">
+          View Our Work <i class="fa-solid fa-images ms-2"></i>
+        </a>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="bw-about-stats-grid">
+          <div class="bw-about-stat">
+            <div class="bw-about-stat-value">500+</div>
+            <div class="bw-about-stat-label">Completed Projects</div>
+          </div>
+          <div class="bw-about-stat">
+            <div class="bw-about-stat-value">10+</div>
+            <div class="bw-about-stat-label">Years in Business</div>
+          </div>
+          <div class="bw-about-stat">
+            <div class="bw-about-stat-value">4</div>
+            <div class="bw-about-stat-label">Service Regions</div>
+          </div>
+          <div class="bw-about-stat">
+            <div class="bw-about-stat-value">24/7</div>
+            <div class="bw-about-stat-label">Emergency Support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="bw-cta-section">
+  <div class="container-xl text-center">
+    <h2 class="bw-cta-title" data-aos="fade-up">Ready for zero downtime?</h2>
+    <p class="bw-cta-text" data-aos="fade-up" data-aos-delay="100">
+      Join hundreds of KZN homeowners who have secured their water supply with BrettenWood Projects.
+    </p>
+    <div class="d-flex flex-wrap justify-content-center gap-3 mt-4" data-aos="fade-up" data-aos-delay="200">
+      <a href="{{ url_for('contact') }}" class="btn bw-btn-primary btn-lg px-5">
+        <i class="fa-solid fa-calendar-check me-2"></i> Book an Assessment
+      </a>
+      <a href="{{ url_for('reviews') }}" class="btn bw-btn-outline btn-lg px-5">
+        <i class="fa-solid fa-star me-2"></i> Read Reviews
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
