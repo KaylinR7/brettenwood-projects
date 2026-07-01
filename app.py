@@ -4,7 +4,8 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 
 import firebase_admin
-from firebase_admin import credentials, firestore
+from firebase_admin import credentials, firestore, storage
+
 
 app = Flask(__name__)
 app.secret_key = 'brettenwood-secret-key-2024'
@@ -18,8 +19,11 @@ _SERVICE_ACCOUNT_KEY = (
 )
 
 cred = credentials.Certificate(_SERVICE_ACCOUNT_KEY)
-firebase_admin.initialize_app(cred)
+firebase_admin.initialize_app(cred, {
+    'storageBucket': 'bretten-wood.appspot.com'
+})
 db = firestore.client()
+
 
 REVIEWS_COLLECTION = 'reviews'
 PORTFOLIO_COLLECTION = 'portfolio_descriptions'
@@ -66,43 +70,35 @@ def load_portfolio_descriptions():
 
 
 # ---------------------------------------------------------------------------
-# Portfolio image scanner
+# Cloud Portfolio Storage & DB Helpers
 # ---------------------------------------------------------------------------
 
-def scan_portfolio_images():
-    """Scan portfolio directory for images and return structured data."""
-    descriptions = load_portfolio_descriptions()
-    images = []
-    if not os.path.exists(PORTFOLIO_IMG_DIR):
-        os.makedirs(PORTFOLIO_IMG_DIR, exist_ok=True)
-        return images
+PORTFOLIO_DB_COLLECTION = 'portfolio'
 
-    extensions = ['*.jpg', '*.jpeg', '*.png', '*.webp', '*.gif']
-    found_files = []
-    for ext in extensions:
-        found_files.extend(glob.glob(os.path.join(PORTFOLIO_IMG_DIR, ext)))
-        found_files.extend(glob.glob(os.path.join(PORTFOLIO_IMG_DIR, ext.upper())))
+def load_portfolio_from_firestore():
+    """Fetch all portfolio items from Firestore, ordered by timestamp descending."""
+    try:
+        docs = db.collection(PORTFOLIO_DB_COLLECTION).order_by(
+            'timestamp', direction=firestore.Query.DESCENDING
+        ).stream()
+        return [doc.to_dict() | {'id': doc.id} for doc in docs]
+    except Exception as e:
+        app.logger.error(f'Firestore load_portfolio_from_firestore error: {e}')
+        # Fallback to empty list
+        return []
 
-    seen = set()
-    for filepath in found_files:
-        filename = os.path.basename(filepath)
-        if filename in seen:
-            continue
-        seen.add(filename)
 
-        stem = os.path.splitext(filename)[0]
-        title = stem.replace('_', ' ').replace('-', ' ').title()
+def save_portfolio_project(title, description, category, image_url):
+    """Save metadata of a new portfolio project to Firestore."""
+    project = {
+        'title': title,
+        'description': description,
+        'category': category,
+        'url': image_url,
+        'timestamp': datetime.now().isoformat()
+    }
+    db.collection(PORTFOLIO_DB_COLLECTION).add(project)
 
-        desc_data = descriptions.get(filename, {})
-        images.append({
-            'filename': filename,
-            'url': f'images/portfolio/{filename}',
-            'title': desc_data.get('title', title),
-            'description': desc_data.get('description', ''),
-            'category': desc_data.get('category', 'residential'),
-        })
-
-    return images
 
 
 # ---------------------------------------------------------------------------
@@ -255,11 +251,138 @@ def systems():
 
 @app.route('/portfolio')
 def portfolio():
-    images = scan_portfolio_images()
+    # Load dynamically from Firestore
+    images = load_portfolio_from_firestore()
     category_filter = request.args.get('category', 'all')
+    
+    if category_filter != 'all':
+        images = [img for img in images if img.get('category') == category_filter]
+        
     return render_template('portfolio.html',
                            images=images,
                            category_filter=category_filter)
+
+
+# ---------------------------------------------------------------------------
+# Hidden Admin Portal Routes
+# ---------------------------------------------------------------------------
+
+ADMIN_PASSWORD = os.environ.get('BW_ADMIN_PASSWORD', 'bwProjects2026')
+
+@app.route('/bw-admin-portal', methods=['GET', 'POST'])
+def admin_portal():
+    # Simple session check or password submission
+    from flask import session
+    
+    if request.method == 'POST':
+        action = request.form.get('action')
+        if action == 'login':
+            password = request.form.get('password')
+            if password == ADMIN_PASSWORD:
+                session['is_admin'] = True
+                flash('Successfully logged into Admin Dashboard.', 'success')
+            else:
+                flash('Incorrect password.', 'danger')
+            return redirect(url_for('admin_portal'))
+            
+        elif action == 'logout':
+            session.pop('is_admin', None)
+            flash('Logged out.', 'success')
+            return redirect(url_for('admin_portal'))
+            
+    is_authenticated = session.get('is_admin', False)
+    
+    # If logged in, show existing portfolio items to allow deletion/management
+    portfolio_items = []
+    if is_authenticated:
+        portfolio_items = load_portfolio_from_firestore()
+        
+    return render_template('admin.html', is_authenticated=is_authenticated, portfolio=portfolio_items)
+
+
+@app.route('/submit_project', methods=['POST'])
+def submit_project():
+    from flask import session
+    if not session.get('is_admin', False):
+        flash('Unauthorized.', 'danger')
+        return redirect(url_for('admin_portal'))
+        
+    title = request.form.get('title', '').strip()
+    description = request.form.get('description', '').strip()
+    category = request.form.get('category', 'residential').strip()
+    file = request.files.get('file')
+    
+    if not title or not file:
+        flash('Project title and image file are required.', 'danger')
+        return redirect(url_for('admin_portal'))
+        
+    try:
+        # 1. Upload to Firebase Storage
+        bucket = storage.bucket()
+        # Clean up filename
+        ext = os.path.splitext(file.filename)[1]
+        secure_filename = f"portfolio_{datetime.now().strftime('%Y%m%d%H%M%S')}{ext}"
+        
+        blob = bucket.blob(f"portfolio/{secure_filename}")
+        # Upload
+        blob.upload_from_string(
+            file.read(),
+            content_type=file.content_type
+        )
+        
+        # Make public so it can be viewed by anyone
+        blob.make_public()
+        image_url = blob.public_url
+        
+        # 2. Save metadata to Firestore
+        save_portfolio_project(title, description, category, image_url)
+        
+        flash('New portfolio project successfully uploaded and published!', 'success')
+    except Exception as e:
+        app.logger.error(f'Failed to upload project: {e}')
+        flash(f'Error uploading project: {e}', 'danger')
+        
+    return redirect(url_for('admin_portal'))
+
+
+@app.route('/delete_project/<project_id>', methods=['POST'])
+def delete_project(project_id):
+    from flask import session
+    if not session.get('is_admin', False):
+        flash('Unauthorized.', 'danger')
+        return redirect(url_for('admin_portal'))
+        
+    try:
+        # Delete from Firestore
+        doc_ref = db.collection(PORTFOLIO_DB_COLLECTION).document(project_id)
+        doc = doc_ref.get()
+        if doc.exists:
+            # Delete from Firebase Storage if path matches
+            data = doc.to_dict()
+            url = data.get('url', '')
+            if 'firebasestorage.googleapis.com' in url or 'storage.googleapis.com' in url:
+                try:
+                    bucket = storage.bucket()
+                    # extract blob path from public url
+                    filename = url.split('/')[-1].split('?')[0]
+                    if '%2F' in filename:
+                        filename = filename.replace('%2F', '/')
+                    blob = bucket.blob(filename)
+                    if blob.exists():
+                        blob.delete()
+                except Exception as ex:
+                    app.logger.error(f'Failed to delete blob: {ex}')
+            
+            doc_ref.delete()
+            flash('Project deleted.', 'success')
+        else:
+            flash('Project not found.', 'danger')
+    except Exception as e:
+        app.logger.error(f'Failed to delete project: {e}')
+        flash('Error deleting project.', 'danger')
+        
+    return redirect(url_for('admin_portal'))
+
 
 
 @app.route('/reviews')
