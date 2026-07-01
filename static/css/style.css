@@ -151,6 +151,16 @@ img { max-width: 100%; height: auto; display: block; }
 
 .navbar-brand.bw-brand:hover { opacity: 0.85; }
 
+.bw-brand-text {
+  font-family: var(--bw-font-head);
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--bw-black);
+}
+
 .bw-nav-link {
   font-family: var(--bw-font-head);
   font-weight: 700;
